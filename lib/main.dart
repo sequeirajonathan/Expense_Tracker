@@ -42,25 +42,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'New Shoes',
-    //   amount: 69.99,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Weekly Groceries',
-    //   amount: 16.53,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Weekly Groceries',
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
   ];
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
-      return tx.date.isAfter(DateTime.now().subtract(Duration(
-        days: 7
-      )));
+      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
@@ -105,11 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Container(
             width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Chart(_recentTransactions),
-              elevation: 5,
-            ),
+            child: Chart(_recentTransactions),
           ),
           TransactionList(_userTransactions),
         ]),
